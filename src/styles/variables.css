@@ -1,0 +1,10 @@
+:root {
+  /* Font */
+  --primary-font: "Roboto", sans-serif;
+
+  /* Colors */
+  --clr-primary: #000000;
+
+  /* Sizing */
+  --font-size-small: 14px;
+}
