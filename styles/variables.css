@@ -1,17 +1,18 @@
 :root {
-    /* Color Variables */
-    --primary-color: #3498db;
-    --secondary-color: red;
-    --accent-color: #e74c3c;
+  /* Color Variables */
+  --yellow-color: rgba(38, 187, 116, 1);
+  --white-color: rgba(255, 255, 255, 1);
+  --gray-color: rgba(192, 192, 192, 1);
+  --black-color: rgba(0, 0, 0, 1);
 
-    /* Font Variables */
-    --font-family: 'Helvetica Neue', sans-serif;
-    --font-size-base: 16px;
-    --font-size-large: 24px;
-    --font-size-small: 12px;
+  /* Font Variables */
+  --font-family: "Helvetica Neue", sans-serif;
+  --font-size-base: 16px;
+  --font-size-large: 24px;
+  --font-size-small: 12px;
 
-    /* Spacing Variables */
-    --spacing-small: 8px;
-    --spacing-medium: 16px;
-    --spacing-large: 32px;
+  /* Spacing Variables */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 32px;
 }
