@@ -1,2 +1,18 @@
 @import "./styles/index.css";
 
+/* example start*/
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+.card {
+    max-width: 200px;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+}
+/* example end*/
