@@ -1,2 +1,15 @@
 @import "./variables.css";
 @import "./reset.css";
+
+.yellow-button {
+  background-color: var(--yellow-color);
+  color: var(--white-color);
+  padding: 15px 28px;
+}
+
+.yellow-button-outline {
+  background-color: var(--white-color);
+  color: var(--yellow-color);
+  padding: 15px 28px;
+  border: 1px solid var(--yellow-color);
+}
