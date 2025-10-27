@@ -1,4 +1,4 @@
-
+import fetchData from './fetch.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
 // tüm sayfalar için gerekli kodlar buraya gelecek
