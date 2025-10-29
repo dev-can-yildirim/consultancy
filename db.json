@@ -1,16 +1,13 @@
-
 {
-  "users": [
-    { "id": 1, "name": "Alice" },
-    { "id": 2, "name": "Bob" },
-    { "id": 3, "name": "Charlie" }
-  ],
-  "posts": [
-    { "id": 1, "title": "First Post", "content": "This is the first post." },
-    { "id": 2, "title": "Second Post", "content": "This is the second post." }
-  ],
-  "comments": [
-    { "id": 1, "content": "First Comment" },
-    { "id": 2, "content": "Second Comment" }
+  "why-us-textContent": {
+    "eyebrow": "Why Us?",
+    "heading": "We Have A Lot of Experience in Work",
+    "description": "UpConsit as a leading business consulting place, we have helped many small to medium and large companies to help their business"
+  },
+  "why-us-stats": [
+    { "id": 1, "value": 1200, "text": "Projects Completed" },
+    { "id": 2, "value": 20, "text": "Year of Experience" },
+    { "id": 3, "value": 55, "text": "New Brand" },
+    { "id": 4, "value": 14, "text": "Awards Won" }
   ]
 }

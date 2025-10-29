@@ -1,3 +1,70 @@
 @import url("./styles/index.css");
 
 /* css kodlarınız buraya gelecek */
+.why-us-section {
+  display: grid;
+  justify-content: center;
+  gap: 40px;
+}
+.why-us-header {
+  display: grid;
+  text-align: center;
+  gap: 20px;
+  padding: 30px;
+  margin: auto;
+  max-width: 720px;
+}
+.why-us-top-header {
+  color: var(--green-color);
+  font-weight: 500;
+  font-size: var(--font-size-primary-header);
+  font-family: var(--primary-font);
+}
+.why-us-bottom-header {
+  color: var(--black-color);
+  font-weight: 600;
+  font-size: var(--font-size-medium-header);
+}
+.why-us-text {
+  font-weight: 400;
+  color: var(--gray-color);
+  font-size: var(--font-size-primary-header);
+}
+.why-us-content {
+  padding: 30px;
+  display: flex;
+  gap: 160px;
+  justify-content: center;
+  text-align: center;
+}
+.stat-item {
+  display: grid;
+  gap: 10px;
+}
+.stat-value {
+  color: var(--green-color);
+  font-size: var(--font-size-stats);
+  font-weight: 700;
+}
+.stat-text {
+  font-weight: 400;
+  font-size: var(--font-size-primary-header);
+  color: var(--gray-color);
+  font-family: var(--primary-font);
+}
+
+@media (max-width: 1024px) {
+  .why-us-content {
+    gap: 20px;
+  }
+  .why-us-section {
+    gap: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .why-us-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
