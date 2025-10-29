@@ -2,18 +2,15 @@
 
 /* css kodlarınız buraya gelecek */
 /* miray -OC-16-17 - Implement the More Features Section start */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-}
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1000px;
+  width: 1181px;
+  height: 556px;
   margin: 50px auto;
   background-color: #fff;
+  overflow: hidden;
 }
 
 .left,
@@ -23,29 +20,44 @@ body {
 }
 
 .left img {
-  width: 100%;
-  height: auto;
+  width: 554px;
+  height: 556px;
   display: block;
+  border-radius: 8px;
+  opacity: 1;
+  transform: rotate(0deg);
+  object-fit: cover;
 }
 
 .right {
+  width: 553px;
+  height: 226px;
   padding: 40px;
+  margin-top: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .right h2 {
-  color: #13b148;
-  margin-bottom: 10px;
+  width: 124px;
+  height: 22px;
+  opacity: 1;
+  transform: rotate(0deg);
+  color: rgba(38, 187, 116, 1);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 25px;
 }
 
 .right h3 {
-  color: #555;
+  max-width: 360px;
   margin-bottom: 20px;
+  color: black;
 }
 
 .right p {
+  max-width: 480px;
   color: #666;
   line-height: 1.6;
   margin-bottom: 30px;
@@ -53,7 +65,9 @@ body {
 
 .right button {
   padding: 12px 24px;
-  background-color: green;
+  background-color: rgba(38, 187, 116, 1);
+  width: 146px;
+  height: 49px;
   color: white;
   border: none;
   border-radius: 4px;
@@ -62,7 +76,7 @@ body {
 }
 
 .right button:hover {
-  background-color: #d3d016;
+  opacity: 0.8;
 }
 
 /* responsive */
