@@ -1,6 +1,8 @@
 @import url("./styles/index.css");
 
 /* css kodlarınız buraya gelecek */
+
+/* can-why-us-section start */
 .why-us-section {
   display: grid;
   justify-content: center;
@@ -68,3 +70,4 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+/* can-why-us-section end */
