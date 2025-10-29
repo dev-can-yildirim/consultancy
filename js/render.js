@@ -3,14 +3,12 @@ import fetchData from "./fetch.js";
 const createWhyUsSection = () => {
   async function renderWhyUs() {
     try {
-      const response = await fetch("/db.json");
-      const data = await response.json();
+      const [content, stats] = await Promise.all([
+        fetchData("why-us-textContent"),
+        fetchData("why-us-stats"),
+      ]);
 
-      const whyUsSection = document.getElementById("why-us-section");
-
-      const content = data["why-us-textContent"];
-      const stats = data["why-us-stats"];
-
+      const whyUsSection = document.querySelector(".why-us-section");
       whyUsSection.innerHTML = `
         <div class="why-us-header">
           <h4 class="why-us-top-header">${content.eyebrow}</h4>
