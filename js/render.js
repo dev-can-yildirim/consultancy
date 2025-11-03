@@ -39,103 +39,62 @@ const createWhyUsSection = () => {
 
   renderWhyUs();
 };
-const createLoginSignUpForm = (formType) => {
-  async function renderForm(formType) {
-    // 1. Ayar objesinden doğru parametreleri seç
+const createLoginSignUpForm = async (formType) => {
+  const formContent = document.getElementById("formContent");
+  const config = await fetchData(formType);
 
-    const formContent = document.getElementById("formContent");
+  const fieldsHTML = (config.fields || [])
+    .map(
+      (field) =>
+        `<input class="field" type="${field.type}" placeholder="${field.placeholder}" name="${field.name}" />`
+    )
+    .join("");
 
-    const [config] = await Promise.all([fetchData(formType)]);
+  formContent.innerHTML = `
+    <h2 class="form-title">${config.title}</h2>
 
-    // 2. HTML'i oluşturmaya başla
-    let html = `
-        <h2 class="form-title">${config.title}</h2>
-        
-        <form id="${formType}-form">
-    `;
+    <form id="${formType}-form">
+      ${fieldsHTML}
 
-    // 3. Normal input alanlarını (fields) config'den alıp ekle
-    config.fields.forEach((field) => {
-      html += `
-            <input
-                class="field"
-                type="${field.type}" 
-                placeholder="${field.placeholder}" 
-                name="${field.name}" 
-            />`;
-    });
-
-    // 4. Şifre alanını ve göz ikonunu ekle
-    html += `
-        <div class="password-wrapper">
-            <input 
-                type="${config.passwordField.type}" 
-                placeholder="${config.passwordField.placeholder}" 
-                name="${config.passwordField.name}" 
-            />
-            <span class="password-toggle-icon" id="togglePassword">
-               <img src="/images/login-signup-images/eye-vector-consulty.svg" alt="">            
-            </span>
-        </div>
-    `;
-
-    // 5. "Remember me" ve "Forgot password" bölümünü ekle
-    html += `
-        <div class="form-options">
-            <label>
-                <div class="switch-container">
-                    <input type="checkbox" class="switch-checkbox" id="benimSwitch">
-                    <label class="switch-label" for="benimSwitch"></label>
-                 </div>
-               <p id="durum-metni">Remember Me</p>
-                
-            </label>
-            <a href="#" class="forgot-link">Forgot password?</a>
-        </div>
-    `;
-
-    // 6. Ana Butonu (Login/Sign in) ekle
-    html += `
-        <button type="submit" class="submit-btn">
-            ${config.submitText}
+      <div class="password-wrapper">
+        <input type="${config.passwordField.type}" placeholder="${config.passwordField.placeholder}" name="${config.passwordField.name}" />
+        <button type="button" class="password-toggle-icon" id="togglePassword" aria-label="Toggle password">
+          <img src="/images/login-signup-images/eye-vector-consulty.svg" alt="">
         </button>
-    `;
+      </div>
 
-    // 7. Formu kapat
-    html += `</form>`;
+      <div class="form-options">
+        <label class="remember-me">
+          <span class="switch-container">
+            <input type="checkbox" class="switch-checkbox" id="benimSwitch">
+            <span class="switch-label"></span>
+          </span>
+          <p id="durum-metni">Remember Me</p>
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
 
-    // 8. "Google ile Giriş" butonunu (ortak) ekle
-    html += `
-        <button class="google-btn">
-           <img src="/images/login-signup-images/google-icon.svg" alt="">
-            Or ${config.submitText} with Google
-        </button>
-    `;
+      <button type="submit" class="submit-btn">${config.submitText}</button>
+    </form>
 
-    // 9. Form değiştirme linkini (toggle) ekle
-    html += `
-        <div class="toggle-link-container">
-            ${config.toggleText}
-            <a href="#" class="toggle-link" data-target="${config.toggleTarget}">
-            
-                ${config.toggleLinkText}
-            </a>
-        </div>
-        
-    `;
-    document.addEventListener("click", (e) => {
-      if (e.target.matches(".toggle-link")) {
-        e.preventDefault();
-        window.location.href =
-          "./../" + e.target.dataset.target + "/index.html";
-      }
-    });
-    // 10. Üretilen tüm HTML'i ekrana bas
-    formContent.innerHTML = html;
-  }
- 
+    <button class="google-btn">
+      <img src="/images/login-signup-images/google-icon.svg" alt="">
+      Or ${config.submitText} with Google
+    </button>
 
-  renderForm(formType);
+    <div class="toggle-link-container">
+      ${config.toggleText}
+      <a href="#" class="toggle-link" data-target="${config.toggleTarget}">${config.toggleLinkText}</a>
+    </div>
+  `;
+
+  // tek bir delegation ile toggle-link yönlendirmesi
+  formContent.addEventListener("click", (e) => {
+    const link = e.target.closest(".toggle-link");
+    if (!link) return;
+    e.preventDefault();
+    location.href = `./../${link.dataset.target}/index.html`;
+  });
 };
 
 export { createWhyUsSection, createLoginSignUpForm };

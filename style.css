@@ -2,14 +2,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css");
 
 /* css kodlarınız buraya gelecek */
-
-/* Genel: Beklenmeyen yatay kaydırmayı engelle */
-html,
-body {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 /* can-why-us-section start */
 .why-us-section {
   display: grid;
@@ -200,7 +192,9 @@ body {
   display: grid;
   align-items: center;
   width: 30%;
+  align-content: center;
   padding: 40px;
+  gap: 48px;
 }
 #formContent {
   display: grid;
@@ -229,6 +223,7 @@ body {
 .password-toggle-icon {
   position: absolute;
   top: 30%;
+  border: none;
   right: 5%;
 }
 .password-wrapper {
@@ -287,7 +282,7 @@ body {
 .switch-container {
   position: relative;
   display: inline-block;
-  width: 40px; /* Genişlik */
+  width: 45px; /* Genişlik */
   height: 20px; /* Yükseklik */
 }
 
