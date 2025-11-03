@@ -4,6 +4,9 @@
 /* css kodlarınız buraya gelecek */
 
 /* can-why-us-section start */
+section {
+  padding: 40px 93px;
+}
 .why-us-section {
   display: grid;
   justify-content: center;
@@ -55,6 +58,81 @@
   color: var(--gray-color);
   font-family: var(--primary-font);
 }
+
+/* can-oc-14 future-section start */
+.features-container {
+  display: grid;
+  justify-content: center;
+  gap: 46px;
+}
+.features-header {
+  display: grid;
+  gap: 20px;
+  max-width: 670px;
+}
+.features-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+.features-content-left {
+  display: grid;
+  max-width: 517px;
+  gap: 55px;
+}
+.features-content-image {
+  background-color: var(--green-color);
+  width: 24px;
+  height: 24px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.features-content-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.features-content-content {
+  display: grid;
+  gap: 10px;
+}
+.features-content-content-header {
+  color: var(--black-color);
+  font-weight: 600;
+  font-size: var(--font-size-small-header);
+}
+.features-content-paragraph {
+  font-family: var(--primary-font);
+  color: var(--gray-color);
+}
+.features-content-right img {
+  width: 100%;
+
+  object-fit: cover;
+  max-height: 600px;
+}
+@media (max-width: 1024px) {
+  .features-content {
+    display: grid;
+  }
+  .features-content-right img {
+    width: 100%;
+    border-radius: 8px;
+    max-height: 300px;
+  }
+  .features-content-left {
+    max-width: 100%;
+  }
+  section {
+    padding: 24px;
+  }
+}
+
+/* can-oc-14 future-section end */
 
 @media (max-width: 1024px) {
   .why-us-content {
@@ -125,6 +203,7 @@
 }
 .nav-menu-navbar-right {
   display: none;
+  border: none;
 }
 .hamburger-button {
   border: none;

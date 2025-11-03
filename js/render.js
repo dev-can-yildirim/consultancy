@@ -40,4 +40,32 @@ const createWhyUsSection = () => {
   renderWhyUs();
 };
 
-export { createWhyUsSection };
+const createFeaturesSection = () => {
+  async function renderFutureSection() {
+    try {
+      const [data] = await Promise.all([fetchData("feature-section")]);
+      console.log(data);
+
+      const featuresContentLeft = document.querySelector(
+        ".features-content-left"
+      );
+      featuresContentLeft.innerHTML = data.map((item) => {
+       return `
+         <div class="features-content-header">
+              <div class="features-content-image"><img src="${item.imgUrl}" alt="" /></div>
+              <div class="features-content-content">
+                <h4 class="features-content-content-header">${item.header}</h4>
+                <p class="features-content-paragraph">${item.paragraph}</p>
+              </div>
+          </div>
+        `;
+      }).join("");
+    } catch (err) {
+      console.error("JSON verisi yüklenemedi:", err);
+    }
+  }
+
+  renderFutureSection();
+};
+
+export { createWhyUsSection, createFeaturesSection };

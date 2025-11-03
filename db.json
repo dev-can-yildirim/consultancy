@@ -9,5 +9,25 @@
     { "id": 2, "value": 20, "text": "Year of Experience" },
     { "id": 3, "value": 55, "text": "New Brand" },
     { "id": 4, "value": 14, "text": "Awards Won" }
+  ],
+  "feature-section": [
+    {
+      "id": 1,
+      "imgUrl": "/images/features-images/bx-support.svg",
+      "header": "Directly guided by professionals",
+      "paragraph": "General advice on professional practice in conference interpreting, with the aim of."
+    },
+    {
+      "id": 2,
+      "imgUrl": "/images/features-images/camera.svg",
+      "header": "Monitor business changes",
+      "paragraph": "For assessing your change management success. It ease recording and assessing data."
+    },
+    {
+      "id": 3,
+      "imgUrl": "/images/features-images/ring.svg",
+      "header": "Full consultation",
+      "paragraph": "Consultees can take advantage of the full consultation period to prepare considered."
+    }
   ]
 }
