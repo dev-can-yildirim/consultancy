@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     navMenu.classList.toggle("active");
   });
   if (window.location.pathname.includes("home")) {
+    const data = await fetchData("feature-section");
     createWhyUsSection();
-    createFeaturesSection();
+    createFeaturesSection(data);
   } else if (window.location.pathname.includes("login")) {
     // login sayfasında render olacak kodlar buraya gelecek
   } else if (window.location.pathname.includes("pricing")) {
