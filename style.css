@@ -1,53 +1,296 @@
-@import "../styles/index.css";
+@import url("./styles/index.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css");
 
 /* css kodlarınız buraya gelecek */
+
+/* can-why-us-section start */
+section {
+  padding: 40px 93px;
+}
+.why-us-section {
+  display: grid;
+  justify-content: center;
+  gap: 40px;
+}
+.why-us-header {
+  display: grid;
+  text-align: center;
+  gap: 20px;
+  padding: 30px;
+  margin: auto;
+  max-width: 720px;
+}
+.why-us-top-header {
+  color: var(--green-color);
+  font-weight: 500;
+  font-size: var(--font-size-primary-header);
+  font-family: var(--primary-font);
+}
+.why-us-bottom-header {
+  color: var(--black-color);
+  font-weight: 600;
+  font-size: var(--font-size-medium-header);
+}
+.why-us-text {
+  font-weight: 400;
+  color: var(--gray-color);
+  font-size: var(--font-size-primary-header);
+}
+.why-us-content {
+  padding: 30px;
+  display: flex;
+  gap: 160px;
+  justify-content: center;
+  text-align: center;
+}
+.stat-item {
+  display: grid;
+  gap: 10px;
+}
+.stat-value {
+  color: var(--green-color);
+  font-size: var(--font-size-stats);
+  font-weight: 700;
+}
+.stat-text {
+  font-weight: 400;
+  font-size: var(--font-size-primary-header);
+  color: var(--gray-color);
+  font-family: var(--primary-font);
+}
+
+/* can-oc-14 future-section start */
+.features-container {
+  display: grid;
+  justify-content: center;
+  gap: 46px;
+}
+.features-header {
+  display: grid;
+  gap: 20px;
+  max-width: 670px;
+}
+.features-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+.features-content-left {
+  display: grid;
+  max-width: 517px;
+  gap: 55px;
+}
+.features-content-image {
+  background-color: var(--green-color);
+  width: 24px;
+  height: 24px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.features-content-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.features-content-content {
+  display: grid;
+  gap: 10px;
+}
+.features-content-content-header {
+  color: var(--black-color);
+  font-weight: 600;
+  font-size: var(--font-size-small-header);
+}
+.features-content-paragraph {
+  font-family: var(--primary-font);
+  color: var(--gray-color);
+}
+.features-content-right img {
+  width: 100%;
+
+  object-fit: cover;
+  max-height: 600px;
+}
+@media (max-width: 1024px) {
+  .features-content {
+    display: grid;
+  }
+  .features-content-right img {
+    width: 100%;
+    border-radius: 8px;
+    max-height: 300px;
+  }
+  .features-content-left {
+    max-width: 100%;
+  }
+  section {
+    padding: 24px;
+  }
+}
+
+/* can-oc-14 future-section end */
+
+@media (max-width: 1024px) {
+  .why-us-content {
+    gap: 20px;
+  }
+  .why-us-section {
+    gap: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .why-us-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* can-why-us-section end */
+
+/* <!-- Can-oc-4-implement-navbar Start --> */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--black-color);
+  padding: 40px 93px;
+}
+.hamburger {
+  display: none;
+}
+.nav-logo {
+  color: var(--green-color);
+  font-weight: 800;
+  z-index: 2;
+  position: relative;
+  font-size: var(--font-size-logo);
+}
+.navbar-left {
+  display: flex;
+  gap: 61px;
+  align-items: center;
+}
+.nav-menu {
+  display: flex;
+  gap: 55px;
+  align-items: center;
+}
+.nav-link {
+  color: var(--white-color);
+  font-size: var(--font-size-base);
+  font-family: var(--secondary-font);
+}
+.nav-link:hover {
+  opacity: 0.7;
+}
+.navbar-right button {
+  background-color: var(--green-color);
+  color: var(--white-color);
+  padding: 15px 28px;
+  border: none;
+  font-weight: 600;
+}
+.hamburger-icon {
+  color: var(--white-color);
+  font-size: var(--font-size-logo);
+}
+.hamburger.hamburger-active {
+  display: block;
+}
+.nav-menu-navbar-right {
+  display: none;
+  border: none;
+}
+.hamburger-button {
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 40px 24px;
+  }
+  .nav-menu {
+    display: grid;
+    gap: 30px;
+    position: absolute;
+    transform: translateY(-120%);
+    top: -100%;
+    right: 0;
+    background-color: var(--black-color);
+    text-align: center;
+    transition: 0.3s ease;
+    padding: 30px;
+    width: 100%;
+  }
+  .nav-menu.active {
+    transform: translateY(15%);
+    transition: 0.3s ease;
+    display: grid;
+    width: 100%;
+    top: 45px;
+    justify-content: center;
+  }
+  .nav-menu-navbar-right {
+    background-color: var(--green-color);
+    color: var(--white-color);
+    padding: 15px 28px;
+    font-weight: 600;
+    display: block;
+  }
+  .navbar-right button {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+/* <!-- Can-oc-4-implement-navbar End --> */
 .hero-section {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    background-color: black;
-    max-width: 1180px;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background-color: black;
+  max-width: 1180px;
+  margin: auto;
 }
 
 .hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    color: white;
-    align-items: start;
-
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  color: white;
+  align-items: start;
 }
 
 .hero-content .started-button {
-    background-color: white;
-    color: black;
-    padding: 10px 18px;
-    border-radius: 30px;
-
+  background-color: white;
+  color: black;
+  padding: 10px 18px;
+  border-radius: 30px;
 }
 .email-content {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: 12px;
 }
 .email-content input {
-    padding: 15.5px 10px;
-    background-color: white;
-    border-radius: 8px;
-    width: 363px;
+  padding: 15.5px 10px;
+  background-color: white;
+  border-radius: 8px;
+  width: 363px;
 }
 .email-content button {
-    background-color: var(--green-color);
-    padding: 15px 28px;
-    border-radius: 8px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-   
+  background-color: var(--green-color);
+  padding: 15px 28px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-
-
 .hero-images img {
-    width: 100%;
+  width: 100%;
 }
