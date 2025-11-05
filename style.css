@@ -62,7 +62,6 @@ section {
 /* can-oc-14 future-section start */
 .features-container {
   display: grid;
-  justify-content: center;
   gap: 46px;
 }
 .features-header {
