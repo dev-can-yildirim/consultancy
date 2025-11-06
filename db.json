@@ -29,5 +29,43 @@
       "header": "Full consultation",
       "paragraph": "Consultees can take advantage of the full consultation period to prepare considered."
     }
+  ],
+  "services-card": [
+    {
+      "id": 1,
+      "image": "/images/structure-images/bx-time.svg",
+      "title": "Fast workmanship, precise consultation",
+      "text": "If you are a business owner looking to improve the quality and efficiency of the production process, operations consultants can be the right choice to help you find new."
+    },
+    {
+      "id": 2,
+      "image": "/images/structure-images/bx-dollar.svg",
+      "title": "Lower prices with lots of variety",
+      "text": "If you are a business owner looking to improve the quality and efficiency of the production process, operations consultants can be the right choice to help you find new."
+    },
+    {
+      "id": 3,
+      "image": "/images/structure-images/bx-objects-vertical-bottom.svg",
+      "title": "Detailed analysis of sales graph data",
+      "text": "If you are a business owner looking to improve the quality and efficiency of the production process, operations consultants can be the right choice to help you find new."
+    },
+    {
+      "id": 4,
+      "image": "/images/structure-images/bx-shape-triangle.svg",
+      "title": "Management and strategy consultant",
+      "text": "If you are a business owner looking to improve the quality and efficiency of the production process, operations consultants can be the right choice to help you find new."
+    },
+    {
+      "id": 5,
+      "image": "/images/structure-images/bx-comment-detail.svg",
+      "title": "Communicative with ease of discussion",
+      "text": "If you are a business owner looking to improve the quality and efficiency of the production process, operations consultants can be the right choice to help you find new."
+    },
+    {
+      "id": 6,
+      "image": "/images/structure-images/bx-happy.svg",
+      "title": "Open for feedback and review",
+      "text": "If you are a business owner looking to improve the quality and efficiency of the production process, operations consultants can be the right choice to help you find new."
+    }
   ]
 }

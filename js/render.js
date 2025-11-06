@@ -56,5 +56,19 @@ const createFeaturesSection = async (data) => {
     })
     .join("");
 };
+const createStructureCard = async (dataServices) => {
+  const structureSection = document.querySelector(".structure-content");
 
-export { createWhyUsSection, createFeaturesSection };
+  structureSection.innerHTML = dataServices
+    .map((item) => {
+      return `    
+            <div class="structure-card">
+              <img src="${item.image}" alt="">
+              <h2>${item.title}</h2>
+              <p>${item.text}</p>
+            </div>
+    `;
+    })
+    .join("");
+};
+export { createWhyUsSection, createFeaturesSection, createStructureCard };

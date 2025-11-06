@@ -62,7 +62,6 @@ section {
 /* can-oc-14 future-section start */
 .features-container {
   display: grid;
-  justify-content: center;
   gap: 46px;
 }
 .features-header {
@@ -286,6 +285,7 @@ section {
   padding: 10px 18px;
   border: none;
   border-radius: 30px;
+  font-family: var(--primary-font);
 }
 .email-content {
   display: flex;
@@ -311,13 +311,82 @@ section {
   border-radius: 8px;
 }
 @media (max-width: 900px) {
-  .hero-content h1{
+  .hero-content h1 {
     padding-right: 0%;
-  }.email-content{
+    font-size: var(--font-size-medium-header);
+  }
+  .hero-content p {
+    font-size: var(--font-size-base);
+  }
+  .email-content {
     display: grid;
   }
-  .email-content input{
+  .email-content input {
     width: 100%;
   }
 }
 /* <!-- Can-oc-6-implement-Hero Section End --> */
+
+/* <!-- Can-oc-8-Create a Structure for Services Card Start --> */
+.structure-header {
+  max-width: 500px;
+  display: grid;
+  gap: 20px;
+}
+.structure-header h6 {
+  font-size: var(--font-size-primary-header);
+  color: var(--green-color);
+  font-family: var(--primary-font);
+  font-weight: 500;
+}
+.structure-header h1 {
+  font-weight: 600;
+  font-size: var(--font-size-medium-header);
+  color: var(--black-color);
+}
+.structure-container {
+  display: grid;
+  gap: 40px;
+}
+.structure-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kutu */
+  gap: 20px;
+}
+.structure-card {
+  background-color: rgba(248, 249, 251, 1);
+  border: 1px solid rgba(223, 225, 231, 1);
+  border-radius: 8px;
+  padding: 25px 35px;
+  display: grid;
+  gap: 20px;
+}
+.structure-card img {
+  background-color: var(--green-color);
+  border-radius: 50%;
+  padding: 15px;
+}
+.structure-card h2 {
+  color: var(--black-color);
+  font-size: var(--font-size-small-header);
+  font-weight: 600;
+}
+.structure-card p {
+  font-family: var(--primary-font);
+  font-size: var(--font-size-base);
+  color: var(--gray-color);
+  line-height: 24px;
+}
+
+@media (max-width: 1000px) {
+  .structure-content {
+    grid-template-columns: repeat(2, 1fr); /* 3 kutu */
+  }
+
+}
+@media (max-width: 500px) {
+  .structure-content {
+    grid-template-columns: repeat(1, 1fr); /* 3 kutu */
+  }
+}
+/* <!-- Can-oc-8-Create a Structure for Services Card End --> */
