@@ -788,7 +788,6 @@ table {
 }
 
 tbody {
-  display: grid;
 }
 td {
   width: 25%;
@@ -798,7 +797,6 @@ td {
 }
 tr {
   width: 100%;
-  display: flex;
 }
 
 .tic {
@@ -806,14 +804,10 @@ tr {
   border: 1px solid var(--black-color);
 }
 .table-header-cell {
-  display: grid;
   gap: 20px;
   text-align: center;
-  align-items: center;
-  justify-content: center;
 }
 .table-header {
-  display: flex;
   gap: 24px;
 }
 .table-header-cell p {
@@ -849,15 +843,13 @@ tr {
 .table-header-small {
   display: none;
 }
-.table-header-large {
-  display: flex;
-}
-.short-text{
+
+.short-text {
   font-weight: 600;
   margin-bottom: 10px;
-  display: grid;
+  display: none;
   gap: 5px;
-  font-size: var(--font-size-xsmall);
+  font-size: var(--font-size-small);
 }
 @media (max-width: 960px) {
   thead {
@@ -870,7 +862,12 @@ tr {
 
 @media (max-width: 500px) {
   .table-header-small {
-    display: flex;
+    display: contents;
+  }
+  .short-text {
+
+    display: grid;
+
   }
   .table-header-large {
     display: none;
