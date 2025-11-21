@@ -113,7 +113,7 @@ section {
 }
 .features-content-right img {
   width: 100%;
-
+  border-radius: 8px;
   object-fit: cover;
   max-height: 600px;
 }
@@ -211,7 +211,7 @@ section {
   border: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .navbar {
     padding: 40px 24px;
   }
