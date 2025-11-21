@@ -294,5 +294,35 @@
       "title": "Podcast: Creating a better CX Community",
       "content": "Starting a community doesn’t need to be complicated, but how do you get started?"
     }
+  ],
+  "blog-post-cards": [
+    {
+      "id": 1,
+      "date": "Olivia Rhye • 1 Jan 2023",
+      "title": "Fastest Delivery Ever",
+      "content": "A detailed look into how we optimized our logistics network to achieve record-breaking delivery speeds in the last quarter, ensuring customer satisfaction and market leadership.",
+      "image": "/images/blog-post-cards-images/blog-post-1.jpg"
+    },
+    {
+      "id": 2,
+      "date": "Phoenix Baker • 10 Jan 2023",
+      "title": "Migrating to Linear 101",
+      "content": "Linear helps streamline software projects, sprints, tasks, and bug tracking. Here’s how to get your entire team migrated and running efficiently within a single afternoon.",
+      "image": "/images/blog-post-cards-images/blog-post-2.jpg"
+    },
+    {
+      "id": 3,
+      "date": "Lana Steiner • 21 Jan 2023",
+      "title": "Building your API Stack",
+      "content": "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them. We break down the best tools and practices for building a scalable and robust API stack.",
+      "image": "/images/blog-post-cards-images/blog-post-3.jpg"
+    },
+    {
+      "id": 4,
+      "date": "Olivia Rhye • 1 Aug 2023",
+      "title": "Importance of communication",
+      "content": "Clear and effective team communication is the backbone of any successful project. We explore actionable strategies to improve internal dialogue, reduce bottlenecks, and foster a collaborative environment.",
+      "image": "/images/blog-post-cards-images/blog-post-4.jpg"
+    }
   ]
 }
