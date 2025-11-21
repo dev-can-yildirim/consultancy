@@ -222,7 +222,7 @@ const blogPagination = async (data) => {
         showBlogs();
         updatePagination();
       });
-      
+
       pageButtonDiv.appendChild(pageButton);
     }
 
@@ -246,7 +246,25 @@ const blogPagination = async (data) => {
   showBlogs();
   updatePagination();
 };
-
+const createBlogSection = async (blogs) => {
+  const container = document.querySelector(".blog-post-card");
+  if (!container) return;
+  container.innerHTML = blogs
+    .map(
+      (blog) => `
+        <div class="blog-card-post">
+          <div class="blog-card-image">
+            <img src="${blog.image}" alt="${blog.title}">
+          </div>
+          <div class="blog-card-content">
+            <h4>${blog.date}</h4>
+            <h2>${blog.title}</h2>
+            <p>${blog.content}</p>
+          </div>
+        </div>`
+    )
+    .join("");
+};
 export {
   createWhyUsSection,
   createFeaturesSection,
@@ -255,4 +273,5 @@ export {
   createLoginSignUpForm,
   contactSectionLocalStorage,
   blogPagination,
+  createBlogSection,
 };

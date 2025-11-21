@@ -8,6 +8,7 @@ import {
   contactSectionLocalStorage,
   createHamburgerButton,
   blogPagination,
+  createBlogSection,
 } from "./render.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -39,9 +40,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     createLoginSignUpForm("signup");
   } else if (window.location.pathname.includes("blog")) {
     const data = await fetchData("blog-posts");
-
+    const blogs =await fetchData("blog-post-cards")
     createHamburgerButton();
     blogPagination(data);
+    createBlogSection(blogs)
     // blog sayfasında render olacak kodlar buraya gelecek
   } else if (window.location.pathname.includes("services")) {
     // services sayfasında render olacak kodlar buraya gelecek
