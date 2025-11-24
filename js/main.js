@@ -9,6 +9,7 @@ import {
   createHamburgerButton,
   blogPagination,
   createBlogSection,
+  createPricingSection,
 } from "./render.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -30,11 +31,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else if (window.location.pathname.includes("login")) {
     // login sayfasında render olacak kodlar buraya gelecek
     createLoginSignUpForm("login");
+
+
+
   } else if (window.location.pathname.includes("pricing")) {
     createHamburgerButton();
     contactSectionLocalStorage();
-
     // pricing sayfasında render olacak kodlar buraya gelecek
+    const pricing = await fetchData("pricing");
+    createPricingSection(pricing)
+  
+     
+
+
+
   } else if (window.location.pathname.includes("signup")) {
     // signUp sayfasında render olacak kodlar buraya gelecek
     createLoginSignUpForm("signup");

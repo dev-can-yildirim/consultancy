@@ -781,8 +781,6 @@ table {
   gap: 10px;
 }
 
-tbody {
-}
 td {
   width: 25%;
   font-weight: 600;
@@ -1067,3 +1065,117 @@ tr {
   }
 }
 /* <!-- Can-OC-41 implement the blog post section end --> */
+
+
+/* ceren pricing section start */
+
+.pricing-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.pricing-card {
+    max-width: 370px;
+    width:100%;
+    min-height: 408px;
+    background: var(--white-color); 
+    border: 1px solid #DFE1E7; 
+    border-radius: 8px;
+    
+    padding-top: 30px;
+    padding-right: 35px;
+    padding-bottom: 45px;
+    padding-left: 32px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.card-title {
+    color: var(--green-color);
+    font-family: var(--primary-font);
+    font-weight: 500;
+    font-size: var(--font-size-base); 
+    line-height: 100%;
+    margin-bottom: 15px;
+}
+
+.price-wrapper {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 15px;
+}
+
+.price-amount {
+    font-family: var(--secondary-font);
+    font-weight: 600;
+    font-size: var(--font-size-medium-header);
+    color: var(--black-color);
+    line-height: 100%;
+}
+
+.price-period {
+    font-family: var(--secondary-font);
+    font-weight: 400;
+    font-size: var(--font-size-large-content); 
+    color: var(--black-color);
+    line-height: 100%;
+}
+
+.card-description {
+    width: 100%;
+    font-family: var(--primary-font);
+    font-weight: 400;
+    font-size: var(--font-size-base);
+    line-height: 24px;
+    text-align: center;
+    color: var(--gray-color); 
+    margin-bottom: 20px;
+}
+
+.feature-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: auto;
+    color: var(--black-color);
+}
+
+.feature-list p {
+    font-family: var(--primary-font);
+    font-weight: 400;
+    font-size: var(--font-size-base); 
+    line-height: 24px;
+    text-align: center;
+}
+
+.card-btn {
+    max-width: 301px;
+    width: 100%;
+    height: 49px;
+    background: var(--green-color);
+    border: none;
+    border-radius: 8px;
+    
+    color: var(--white-color);
+    font-family: var(--primary-font);
+    font-weight: 600;
+    font-size: var(--font-size-base); 
+    cursor: pointer;
+    
+    padding: 15px 28px;
+    transition: opacity 0.3s;
+}
+
+.card-btn:hover {
+    opacity: 0.9;
+}
+/* ceren pricing section end */
+

@@ -265,6 +265,43 @@ const createBlogSection = async (blogs) => {
     )
     .join("");
 };
+ 
+
+
+
+
+ const createPricingSection = (data) => {
+    const section = document.getElementById('pricing-section');
+
+    const cardsHTML = data.map(item => {
+        
+        const featuresHTML = item.features.map(feature => 
+            `<p>${feature}</p>`
+        ).join('');
+
+      
+        return `
+            <div class="pricing-card">
+                <h3 class="card-title">${item.title}</h3>
+                <div class="price-wrapper">
+                    <span class="price-amount">${item.price}</span>
+                    <span class="price-period">/mth</span>
+                </div>
+                <p class="card-description">${item.description}</p>
+                <div class="feature-list">
+                    ${featuresHTML}
+                </div>
+                <button class="card-btn">${item.buttonText}</button>
+            </div>
+        `;
+    }).join(''); 
+
+    section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
+};
+
+
+
+
 export {
   createWhyUsSection,
   createFeaturesSection,
@@ -274,4 +311,5 @@ export {
   contactSectionLocalStorage,
   blogPagination,
   createBlogSection,
+  createPricingSection
 };
