@@ -325,4 +325,50 @@
       "image": "/images/blog-post-cards-images/blog-post-4.jpg"
     }
   ]
+  ,
+
+
+
+  
+   "pricing": [
+    {
+      "id": 1,
+      "title": "Team",
+      "price": "$50",
+      "description": "Consultation guidance from certified professionals.",
+      "features": [
+        "Professional expert guidance",
+        "12 hours discussion",
+        "Live view of business"
+      ],
+      "buttonText": "Get Started"
+    },
+    {
+      "id": 2,
+      "title": "Agency",
+      "price": "$150",
+      "description": "The best consulting guidance, discussion anytime.",
+      "features": [
+        "Professional expert guidance",
+        "18 hours discussion",
+        "Live view of business"
+      ],
+      "buttonText": "Get Started"
+    },
+    {
+      "id": 3,
+      "title": "Enterprise",
+      "price": "$500",
+      "description": "Full guidance consultation, get access to all features.",
+      "features": [
+        "Professional expert guidance",
+        "24 hours discussion",
+        "Live view of business"
+      ],
+      "buttonText": "Get Started"
+    }
+  ]
 }
+
+
+ 

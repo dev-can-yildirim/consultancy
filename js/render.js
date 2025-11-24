@@ -265,6 +265,75 @@ const createBlogSection = async (blogs) => {
     )
     .join("");
 };
+ 
+
+
+
+
+ const createPricingSection = (data) => {
+    const section = document.getElementById('pricing-section');
+    
+    const container = document.createElement('div');
+    container.className = 'pricing-container';
+
+    data.forEach(item => {
+       
+        const card = document.createElement('div');
+        card.className = 'pricing-card';
+
+       
+        const title = document.createElement('h3');
+        title.className = 'card-title';
+        title.innerText = item.title;
+
+        const priceWrapper = document.createElement('div');
+        priceWrapper.className = 'price-wrapper';
+        
+        const priceAmount = document.createElement('span');
+        priceAmount.className = 'price-amount';
+        priceAmount.innerText = item.price;
+
+        const pricePeriod = document.createElement('span');
+        pricePeriod.className = 'price-period';
+        pricePeriod.innerText = "/mth";
+
+        priceWrapper.appendChild(priceAmount);
+        priceWrapper.appendChild(pricePeriod);
+
+        
+        const description = document.createElement('p');
+        description.className = 'card-description';
+        description.innerText = item.description;
+
+        const featureList = document.createElement('div');
+        featureList.className = 'feature-list';
+        
+        item.features.forEach(featureText => {
+            const p = document.createElement('p');
+            p.innerText = featureText;
+            featureList.appendChild(p);
+        });
+
+       
+        const button = document.createElement('button');
+        button.className = 'card-btn';
+        button.innerText = item.buttonText;
+
+     
+        card.appendChild(title);
+        card.appendChild(priceWrapper);
+        card.appendChild(description);
+        card.appendChild(featureList);
+        card.appendChild(button);
+
+        container.appendChild(card);
+    });
+
+    section.appendChild(container);
+};
+
+
+
 export {
   createWhyUsSection,
   createFeaturesSection,
@@ -274,4 +343,5 @@ export {
   contactSectionLocalStorage,
   blogPagination,
   createBlogSection,
+  createPricingSection
 };

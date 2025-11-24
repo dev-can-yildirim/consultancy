@@ -9,6 +9,7 @@ import {
   createHamburgerButton,
   blogPagination,
   createBlogSection,
+  createPricingSection,
 } from "./render.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -35,6 +36,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     contactSectionLocalStorage();
 
     // pricing sayfasında render olacak kodlar buraya gelecek
+    (async () => {
+        try {
+            console.log("Pricing verileri yükleniyor...");
+            const data = await fetchData(); 
+            
+            if (data) {
+                createPricingSection(data); 
+            }
+        } catch (error) {
+            console.error("Pricing yüklenirken hata:", error);
+        }
+    })();
+
+
+
   } else if (window.location.pathname.includes("signup")) {
     // signUp sayfasında render olacak kodlar buraya gelecek
     createLoginSignUpForm("signup");
