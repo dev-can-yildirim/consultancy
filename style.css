@@ -1,5 +1,6 @@
 @import url("./styles/index.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 /* css kodlarınız buraya gelecek */
 
@@ -1066,6 +1067,134 @@ tr {
 }
 /* <!-- Can-OC-41 implement the blog post section end --> */
 
+
+/* esra-23-FAQ-section-start*/
+.hidden {
+    display: none;
+}
+
+.faq-section {
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    max-width: 1197px; 
+    width: 100%;
+    margin: 40px auto; 
+    padding: 0 24px;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 38px; 
+}
+
+.faq-subtitle {
+    color: var(--green-color);
+    font-weight: 600;
+    font-family: var(--primary-font); 
+    font-size: var(--font-size-primary-header, 16px);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.faq-title {
+    color: var(--black-color);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600; 
+    font-size: 32px; 
+    line-height: 100%; 
+    margin-top: 16px;
+}
+
+.faq-list {
+    display: grid;
+    gap: 16px; 
+}
+
+.faq-item {
+    background-color: var(--white-color, #FFFFFF);
+    border: 1px solid #CACACA; 
+    border-radius: 5px; 
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 22px 30px; 
+    cursor: pointer;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+}
+
+.faq-question-text {
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    font-weight: 500; 
+    font-size: 20px; 
+    line-height: 100%; 
+    color: var(--black-color, #000000);
+    margin-right: 16px;
+}
+
+.faq-icon {
+    color: var(--gray-color, #001635);
+    transition: transform 0.3s ease-in-out;
+}
+
+.faq-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.icon-rotated {
+    transform: rotate(90deg);
+}
+
+.faq-answer {
+    padding: 0 30px 26px 30px; 
+    color: var(--gray-color, #374151);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.faq-answer p {
+    max-width: 1086px;
+}
+
+.faq-answer-highlight {
+    color: #4F6169;
+    padding: 26px 30px; 
+}
+
+@media (max-width: 768px) {
+    .faq-header {
+        margin-bottom: 32px; 
+    }
+
+    .faq-title {
+        font-size: 24px;
+    }
+
+    .faq-question {
+        padding: 16px 20px; 
+    }
+
+    .faq-question-text {
+        font-size: 16px;
+    }
+
+    .faq-answer {
+        padding: 0 20px 20px 20px; 
+    }
+
+    .faq-answer-highlight {
+        padding: 20px; 
+    }
+}
+
+/* esra-23-FAQ-section-end*/
 
 /* ceren pricing section start */
 

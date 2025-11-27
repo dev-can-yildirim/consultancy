@@ -10,10 +10,12 @@ import {
   blogPagination,
   createBlogSection,
   createPricingSection,
+  createFaqSection,
 } from "./render.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   // get-started adında ki buton tıklanınca alert
+  const faqs = await fetchData("faqs");
   const button = document.querySelector(".m-right button");
 
   if (button) {
@@ -28,6 +30,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     createFeaturesSection(data);
     createHamburgerButton();
     createStructureCard(dataServices);
+
+    createFaqSection(faqs);
+    
+    
   } else if (window.location.pathname.includes("login")) {
     // login sayfasında render olacak kodlar buraya gelecek
     createLoginSignUpForm("login");
@@ -35,15 +41,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
   } else if (window.location.pathname.includes("pricing")) {
+  
     createHamburgerButton();
     contactSectionLocalStorage();
     // pricing sayfasında render olacak kodlar buraya gelecek
     const pricing = await fetchData("pricing");
     createPricingSection(pricing)
+    createFaqSection(faqs);
   
-     
-
-
 
   } else if (window.location.pathname.includes("signup")) {
     // signUp sayfasında render olacak kodlar buraya gelecek
@@ -56,6 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     createBlogSection(blogs)
     // blog sayfasında render olacak kodlar buraya gelecek
   } else if (window.location.pathname.includes("services")) {
+    createFaqSection(faqs);
     // services sayfasında render olacak kodlar buraya gelecek
     createHamburgerButton();
     contactSectionLocalStorage();

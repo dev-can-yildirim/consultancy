@@ -367,6 +367,23 @@
       ],
       "buttonText": "Get Started"
     }
+  ],
+  "faqs": [
+    {
+      "id": 1,
+      "question": "What is subscription pricing or a subscription-based pricing model?",
+      "answer": "A subscription-based pricing model is a business strategy that charges customers a recurring fee—typically monthly or annually—to access a product or service. This contrasts with a one-time purchase model."
+    },
+    {
+      "id": 2,
+      "question": "Why adopt a subscription business model?",
+      "answer": "One, it attracts more customers with its lower entry point (e.g., paying $15 monthly vs. $150 in advance). Two, it offers predictable revenue for businesses. Three, it allows businesses to build stronger, more valuable relationships with its customers."
+    },
+    {
+      "id": 3,
+      "question": "How does a subscription management model work?",
+      "answer": "Subscription management involves handling the entire customer lifecycle, from initial sign-up and recurring billing to managing upgrades, downgrades, pauses, and cancellations. It often requires specialized software to automate these processes."
+    }
   ]
 }
 

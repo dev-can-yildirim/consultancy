@@ -299,7 +299,55 @@ const createBlogSection = async (blogs) => {
     section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
 };
 
+const createFaqSection = async (faqs) => {
+  const faqsSection = document.createElement("section");
+  faqsSection.classList.add("faq-section");
 
+  const headerDiv = document.createElement("div");
+  headerDiv.classList.add("faq-header");
+  headerDiv.innerHTML = `
+      <span class="faq-subtitle">FAQ</span>
+      <h2 class="faq-title">Do you have any questions?</h2>
+  `;
+
+  const faqList = document.createElement("div");
+  faqList.classList.add("faq-list");
+
+  if (!faqs) return;
+
+  faqs.forEach((faq) => {
+    const faqItem = document.createElement("div");
+    faqItem.classList.add("faq-item");
+
+    faqItem.innerHTML = `
+        <button class="faq-question">
+            <span class="faq-question-text">${faq.question}</span>
+            <span class="faq-icon">
+                <img src="../../images/faq-section/arrow1.svg" alt="ikon">
+            </span>
+        </button>
+        <div class="faq-answer hidden">
+            <p>${faq.answer}</p>
+        </div>
+    `;
+
+    const questionBtn = faqItem.querySelector(".faq-question");
+    const answerDiv = faqItem.querySelector(".faq-answer");
+    const icon = faqItem.querySelector(".faq-icon");
+
+    questionBtn.addEventListener("click", () => {
+        answerDiv.classList.toggle("hidden");
+        answerDiv.classList.toggle("faq-answer-highlight");
+        icon.classList.toggle("icon-rotated");
+    });
+
+    faqList.appendChild(faqItem);
+
+  });
+  faqsSection.appendChild(headerDiv);
+  faqsSection.appendChild(faqList);
+  document.body.appendChild(faqsSection);
+}
 
 
 export {
@@ -311,5 +359,6 @@ export {
   contactSectionLocalStorage,
   blogPagination,
   createBlogSection,
-  createPricingSection
+  createPricingSection,
+  createFaqSection,
 };
