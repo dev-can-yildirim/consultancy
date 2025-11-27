@@ -47,10 +47,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // pricing sayfasında render olacak kodlar buraya gelecek
     const pricing = await fetchData("pricing");
     createPricingSection(pricing)
+    createFaqSection(faqs);
   
-     
-
-
 
   } else if (window.location.pathname.includes("signup")) {
     // signUp sayfasında render olacak kodlar buraya gelecek
