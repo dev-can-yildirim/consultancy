@@ -13,6 +13,7 @@ import {
 
 document.addEventListener("DOMContentLoaded", async () => {
   // get-started adında ki buton tıklanınca alert
+  const faqs = await fetchData("faqs");
   const button = document.querySelector(".m-right button");
 
   if (button) {
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     createHamburgerButton();
     createStructureCard(dataServices);
 
-    createFaqSection();
+    createFaqSection(faqs);
     
     
   } else if (window.location.pathname.includes("login")) {
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
     createHamburgerButton();
     contactSectionLocalStorage();
+    createFaqSection(faqs);
 
   } else if (window.location.pathname.includes("signup")) {
     // signUp sayfasında render olacak kodlar buraya gelecek
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     blogPagination(data);
     // blog sayfasında render olacak kodlar buraya gelecek
   } else if (window.location.pathname.includes("services")) {
+    createFaqSection(faqs);
     // services sayfasında render olacak kodlar buraya gelecek
     createHamburgerButton();
     contactSectionLocalStorage();

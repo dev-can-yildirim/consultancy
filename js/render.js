@@ -247,13 +247,21 @@ const blogPagination = async (data) => {
   updatePagination();
 };
 
-const createFaqSection = async () => {
-  const faqs = await fetchData("faqs");
-  const faqList = document.querySelector(".faq-list");
+const createFaqSection = async (faqs) => {
+  const faqsSection = document.createElement("section");
+  faqsSection.classList.add("faq-section");
 
-  if (!faqList || !faqs) return;
+  const headerDiv = document.createElement("div");
+  headerDiv.classList.add("faq-header");
+  headerDiv.innerHTML = `
+      <span class="faq-subtitle">FAQ</span>
+      <h2 class="faq-title">Do you have any questions?</h2>
+  `;
 
-  faqList.innerHTML = "";
+  const faqList = document.createElement("div");
+  faqList.classList.add("faq-list");
+
+  if (!faqs) return;
 
   faqs.forEach((faq) => {
     const faqItem = document.createElement("div");
@@ -271,8 +279,6 @@ const createFaqSection = async () => {
         </div>
     `;
 
-    faqList.appendChild(faqItem);
-
     const questionBtn = faqItem.querySelector(".faq-question");
     const answerDiv = faqItem.querySelector(".faq-answer");
     const icon = faqItem.querySelector(".faq-icon");
@@ -282,7 +288,13 @@ const createFaqSection = async () => {
         answerDiv.classList.toggle("faq-answer-highlight");
         icon.classList.toggle("icon-rotated");
     });
+
+    faqList.appendChild(faqItem);
+
   });
+  faqsSection.appendChild(headerDiv);
+  faqsSection.appendChild(faqList);
+  document.body.appendChild(faqsSection);
 }
 export {
   createWhyUsSection,
