@@ -299,7 +299,30 @@ const createBlogSection = async (blogs) => {
     section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
 };
 
+const createNewsletterSection = (data) => {
+  const section = document.getElementById("newsletter-section");
+  
+  if (!section || !data) return;
 
+  
+  section.innerHTML = data.map((item) => {
+      return `
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">${item.title}</h2>
+                <p class="newsletter-desc">${item.description}</p>
+            </div>
+
+            <div class="newsletter-form-wrapper">
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" class="newsletter-input" placeholder="${item.placeholder}">
+                    <button type="submit" class="newsletter-button">${item.buttonText}</button>
+                </form>
+            </div>
+        </div>
+      `;
+  }).join(""); 
+};
 
 
 export {
@@ -311,5 +334,6 @@ export {
   contactSectionLocalStorage,
   blogPagination,
   createBlogSection,
-  createPricingSection
+  createPricingSection,
+  createNewsletterSection
 };

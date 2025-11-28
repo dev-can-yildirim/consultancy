@@ -10,6 +10,7 @@ import {
   blogPagination,
   createBlogSection,
   createPricingSection,
+  createNewsletterSection
 } from "./render.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -59,5 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // services sayfasında render olacak kodlar buraya gelecek
     createHamburgerButton();
     contactSectionLocalStorage();
+    const newsletterData = await fetchData("newsletter");
+    createNewsletterSection(newsletterData);
   }
 });

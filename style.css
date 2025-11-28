@@ -1179,3 +1179,142 @@ tr {
 }
 /* ceren pricing section end */
 
+
+/* ceren newsletter section start */
+#newsletter-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.newsletter-container {
+    width: 1440px;
+    gap: 80px;
+    padding: 100px 120px;
+    background: var(--green-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.newsletter-content {
+    width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.newsletter-title {
+    max-width: 523px;
+    width: 100%;
+    white-space: nowrap;
+    font-family: var(--secondary-font); 
+    font-size: var(--font-size-white-header); 
+    font-weight: 700;
+    color: var(--white-color);
+    line-height: 100%;
+}
+
+.newsletter-desc {
+    max-width: 560px;
+    width: 100%;
+    font-family: var(--primary-font); 
+    font-size: var(--font-size-large-content); 
+    font-weight: 400;
+    color: #ECECEC; 
+    line-height: 150%;
+}
+
+.newsletter-form-wrapper {
+    width: 560px;
+    height: 84px;
+    border-radius: 20px; 
+    overflow: hidden;
+    box-shadow: 0px 10px 10px 0px rgba(16, 137, 255, 0.1);
+}
+
+.newsletter-form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.newsletter-input {
+    flex: 1;
+    height: 100%; 
+    padding: 27px 32px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 0;
+    
+    font-family: var(--primary-font);
+    font-size: var(--font-size-medium);
+    color: var(--white-color);
+    outline: none;
+}
+
+.newsletter-input::placeholder {
+    color: var(--white-color);
+    opacity: 0.9;
+}
+
+.newsletter-button {
+    width: 144px;
+    height: 100%; 
+    padding: 16px 32px;
+    cursor: pointer;
+    background: var(--white-color);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    
+    font-family: var(--secondary-font);
+    font-weight: 700;
+    font-size: var(--font-size-base);
+    color: var(--green-color);
+}
+@media (max-width: 1200px) {
+    #newsletter-section {
+        padding: 0; 
+        margin-top: 0; 
+    }
+    .newsletter-container {
+        width: 100%;
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 60px 20px;
+        gap: 40px;
+    }
+
+    .newsletter-content {
+        width: 100%; 
+    }
+
+    .newsletter-title {
+        white-space: normal; 
+        font-size: 32px; 
+    }
+
+    .newsletter-form-wrapper {
+        width: 100%; 
+        max-width: 100%;
+     
+    }
+
+    .newsletter-form {
+        flex-direction: row; 
+    }
+    
+    .newsletter-input {
+        padding: 20px; 
+        font-size: 16px;
+    }
+
+    .newsletter-button {
+        padding: 0 24px; 
+    }
+}
+
+/* ceren newsletter section end */
