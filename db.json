@@ -367,17 +367,9 @@
       ],
       "buttonText": "Get Started"
     }
-  ],
+  ]
   
-  "newsletter":
-  [ 
-    {
-    "title": "Subscribe to our Newsletter",
-    "description": "Subscribe for Updates: Stay informed about the latest investor updates, financial results, and announcements by subscribing to our newsletter.",
-    "placeholder": "Enter your email",
-    "buttonText": "Subscribe"
-  }
-]
+  
 }
 
 

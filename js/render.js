@@ -299,29 +299,25 @@ const createBlogSection = async (blogs) => {
     section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
 };
 
-const createNewsletterSection = (data) => {
-  const section = document.getElementById("newsletter-section");
-  
-  if (!section || !data) return;
-
-  
-  section.innerHTML = data.map((item) => {
-      return `
+const createNewsletterSection = () => {
+  const section = document.createElement("section");
+  section.innerHTML = 
+  `
         <div class="newsletter-container">
             <div class="newsletter-content">
-                <h2 class="newsletter-title">${item.title}</h2>
-                <p class="newsletter-desc">${item.description}</p>
+                <h2 class="newsletter-title">Subcribe to our Newsletter</h2>
+                <p class="newsletter-desc">Subscribe for Updates: Stay informed about the latest investor updates, financial results, and announcements by subscribing to our newsletter. </p>
             </div>
 
             <div class="newsletter-form-wrapper">
                 <form class="newsletter-form" onsubmit="event.preventDefault();">
-                    <input type="email" class="newsletter-input" placeholder="${item.placeholder}">
-                    <button type="submit" class="newsletter-button">${item.buttonText}</button>
+                    <input type="email" class="newsletter-input" placeholder="Enter your email">
+                    <button type="submit" class="newsletter-button">Subscribe</button>
                 </form>
             </div>
         </div>
-      `;
-  }).join(""); 
+    `;
+    document.body.appendChild(section);
 };
 
 

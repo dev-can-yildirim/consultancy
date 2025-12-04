@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     createFeaturesSection(data);
     createHamburgerButton();
     createStructureCard(dataServices);
+    createNewsletterSection();
   } else if (window.location.pathname.includes("login")) {
     // login sayfasında render olacak kodlar buraya gelecek
     createLoginSignUpForm("login");
@@ -60,7 +61,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // services sayfasında render olacak kodlar buraya gelecek
     createHamburgerButton();
     contactSectionLocalStorage();
-    const newsletterData = await fetchData("newsletter");
-    createNewsletterSection(newsletterData);
+    createNewsletterSection();
   }
 });
