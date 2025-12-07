@@ -1,5 +1,4 @@
 import fetchData from "./fetch.js";
-import { saveEmailToLocalStorage } from "./localstorage.js";
 
 const createWhyUsSection = () => {
   async function renderWhyUs() {
@@ -299,7 +298,6 @@ const createBlogSection = async (blogs) => {
 
     section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
 };
-
 const createNewsletterSection = () => {
   const section = document.createElement("section");
   section.innerHTML = 
@@ -319,29 +317,90 @@ const createNewsletterSection = () => {
         </div>
     `;
     document.body.appendChild(section);
-    
-  const forms = section.querySelectorAll('.newsletter-form');
-
-  forms.forEach(form => {
-      form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          
-          const input = form.querySelector('.newsletter-input');
-          const email = input.value.trim();
-
-          const result = saveEmailToLocalStorage(email);
-
-          alert(result.message);
-
-          if (result.success) {
-              input.value = "";
-          }
-      });
-  });
 };
+const createFaqSection = async (faqs) => {
+  const faqsSection = document.createElement("section");
+  faqsSection.classList.add("faq-section");
 
+  const headerDiv = document.createElement("div");
+  headerDiv.classList.add("faq-header");
+  headerDiv.innerHTML = `
+      <span class="faq-subtitle">FAQ</span>
+      <h2 class="faq-title">Do you have any questions?</h2>
+  `;
 
+  const faqList = document.createElement("div");
+  faqList.classList.add("faq-list");
 
+  if (!faqs) return;
+
+  faqs.forEach((faq) => {
+    const faqItem = document.createElement("div");
+    faqItem.classList.add("faq-item");
+
+    faqItem.innerHTML = `
+        <button class="faq-question">
+            <span class="faq-question-text">${faq.question}</span>
+            <span class="faq-icon">
+                <img src="../../images/faq-section/arrow1.svg" alt="ikon">
+            </span>
+        </button>
+        <div class="faq-answer hidden">
+            <p>${faq.answer}</p>
+        </div>
+    `;
+
+    const questionBtn = faqItem.querySelector(".faq-question");
+    const answerDiv = faqItem.querySelector(".faq-answer");
+    const icon = faqItem.querySelector(".faq-icon");
+
+    questionBtn.addEventListener("click", () => {
+        answerDiv.classList.toggle("hidden");
+        answerDiv.classList.toggle("faq-answer-highlight");
+        icon.classList.toggle("icon-rotated");
+    });
+
+    faqList.appendChild(faqItem);
+
+  });
+  faqsSection.appendChild(headerDiv);
+  faqsSection.appendChild(faqList);
+  document.body.appendChild(faqsSection);
+}
+
+const createContactSection = () => {
+document.createElement("section");
+const contactSection = document.createElement("section");
+contactSection.innerHTML = `<div class="container">
+        <div class="contact-header">
+            <span class="sub-title">Contact Info</span>
+            <h2 class="main-title">We are always happy to assist you</h2>
+        </div>
+
+        <div class="contact-info-grid">
+            
+            <div class="info-box">
+                <h3 class="info-label">Email Address</h3>
+                <div class="line"></div> <a href="mailto:help@info.com" class="info-value">help@info.com</a>
+                <div class="info-hours">
+                    <p>Assistance hours:</p>
+                    <p>Monday - Friday 6 am to 8 pm EST</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3 class="info-label">Number</h3>
+                <div class="line"></div> <a href="tel:80899834256" class="info-value">(808) 998-34256</a>
+                <div class="info-hours">
+                    <p>Assistance hours:</p>
+                    <p>Monday - Friday 6 am to 8 pm EST</p>
+                </div>
+            </div>
+
+        </div>
+    </div>`
+document.body.appendChild(contactSection);
+} 
 
 export {
   createWhyUsSection,
@@ -353,5 +412,7 @@ export {
   blogPagination,
   createBlogSection,
   createPricingSection,
-  createNewsletterSection
+  createNewsletterSection,
+  createFaqSection,
+  createContactSection,
 };
