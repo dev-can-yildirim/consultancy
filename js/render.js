@@ -298,7 +298,26 @@ const createBlogSection = async (blogs) => {
 
     section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
 };
+const createNewsletterSection = () => {
+  const section = document.createElement("div");
+  section.innerHTML = 
+  `
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Subcribe to our Newsletter</h2>
+                <p class="newsletter-desc">Subscribe for Updates: Stay informed about the latest investor updates, financial results, and announcements by subscribing to our newsletter. </p>
+            </div>
 
+            <div class="newsletter-form-wrapper">
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email">
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(section);
+};
 const createFaqSection = async (faqs) => {
   const faqsSection = document.createElement("section");
   faqsSection.classList.add("faq-section");
@@ -393,6 +412,7 @@ export {
   blogPagination,
   createBlogSection,
   createPricingSection,
+  createNewsletterSection,
   createFaqSection,
   createContactSection,
 };
