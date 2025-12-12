@@ -148,29 +148,46 @@ const createLoginSignUpForm = async (formType) => {
   });
 };
 const contactSectionLocalStorage = () => {
+  const form = document.getElementById("contact-form");
   const nameInput = document.getElementById("contact-input-name");
   const emailInput = document.getElementById("contact-input-email");
   const messageInput = document.getElementById("contact-message");
   const saveButton = document.getElementById("contact-button");
 
-  if (!nameInput || !emailInput || !messageInput || !saveButton) {
-    console.warn("Contact form elemanları bulunamadı (id'leri kontrol et).");
+  if (!form || !nameInput || !emailInput || !messageInput || !saveButton) {
+    console.warn(
+      "Contact form elemanları bulunamadı (createContactSection çalışmış mı?)."
+    );
     return;
   }
 
-  saveButton.addEventListener("click", function () {
+  // Opsiyonel: önceki kaydı geri yükle
+  try {
+    const saved = localStorage.getItem("contactData");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      nameInput.value = parsed?.userName ?? "";
+      emailInput.value = parsed?.userEmail ?? "";
+      messageInput.value = parsed?.userMessage ?? "";
+    }
+  } catch (e) {
+    console.warn("contactData parse edilemedi:", e);
+  }
+
+  // Eski click yerine: submit ile tek doğru yerden yönet
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
     const formData = {
-      userName: nameInput.value,
-      userEmail: emailInput.value,
-      userMessage: messageInput.value,
+      userName: nameInput.value.trim(),
+      userEmail: emailInput.value.trim(),
+      userMessage: messageInput.value.trim(),
     };
 
     localStorage.setItem("contactData", JSON.stringify(formData));
     alert("Mesajınız yerel olarak kaydedildi!");
 
-    nameInput.value = "";
-    emailInput.value = "";
-    messageInput.value = "";
+    form.reset();
   });
 };
 
@@ -420,26 +437,71 @@ const createContactSection = () => {
         <h2 class="main-title">We are always happy to assist you</h2>
       </div>
 
-      <div class="contact-info-grid">
-        <div class="info-box">
-          <h3 class="info-label">Email Address</h3>
-          <div class="line"></div>
-          <a href="mailto:help@info.com" class="info-value">help@info.com</a>
-          <div class="info-hours">
-            <p>Assistance hours:</p>
-            <p>Monday - Friday 6 am to 8 pm EST</p>
+      <div class="contact-grid">
+        <!-- Sol: info -->
+        <div class="contact-info-grid">
+          <div class="info-box">
+            <h3 class="info-label">Email Address</h3>
+            <div class="line"></div>
+            <a href="mailto:help@info.com" class="info-value">help@info.com</a>
+            <div class="info-hours">
+              <p>Assistance hours:</p>
+              <p>Monday - Friday 6 am to 8 pm EST</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <h3 class="info-label">Number</h3>
+            <div class="line"></div>
+            <a href="tel:80899834256" class="info-value">(808) 998-34256</a>
+            <div class="info-hours">
+              <p>Assistance hours:</p>
+              <p>Monday - Friday 6 am to 8 pm EST</p>
+            </div>
           </div>
         </div>
 
-        <div class="info-box">
-          <h3 class="info-label">Number</h3>
-          <div class="line"></div>
-          <a href="tel:80899834256" class="info-value">(808) 998-34256</a>
-          <div class="info-hours">
-            <p>Assistance hours:</p>
-            <p>Monday - Friday 6 am to 8 pm EST</p>
+        <!-- Sağ: form -->
+        <form class="contact-form" id="contact-form">
+          <div class="contact-form-row">
+            <label class="contact-label">
+              Name
+              <input
+                type="text"
+                id="contact-input-name"
+                class="contact-input"
+                placeholder="Your name"
+                required
+              />
+            </label>
+
+            <label class="contact-label">
+              Email
+              <input
+                type="email"
+                id="contact-input-email"
+                class="contact-input"
+                placeholder="Your email"
+                required
+              />
+            </label>
           </div>
-        </div>
+
+          <label class="contact-label">
+            Message
+            <textarea
+              id="contact-message"
+              class="contact-textarea"
+              placeholder="Write your message..."
+              rows="6"
+              required
+            ></textarea>
+          </label>
+
+          <button type="submit" id="contact-button" class="contact-button">
+            Send Message
+          </button>
+        </form>
       </div>
     </div>
   `;
