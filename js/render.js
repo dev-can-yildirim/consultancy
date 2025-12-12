@@ -342,7 +342,7 @@ const createFaqSection = async (faqs) => {
         <button class="faq-question">
             <span class="faq-question-text">${faq.question}</span>
             <span class="faq-icon">
-                <img src="../../images/faq-section/arrow1.svg" alt="ikon">
+                <img src="/images/faq-section/arrow1.svg" alt="ikon">
             </span>
         </button>
         <div class="faq-answer hidden">
