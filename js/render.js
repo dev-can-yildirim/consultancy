@@ -321,106 +321,130 @@ const createPricingSection = (data) => {
   section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
 };
 const createNewsletterSection = () => {
-  const section = document.createElement("div");
-  section.innerHTML = `
-        <div class="newsletter-container">
-            <div class="newsletter-content">
-                <h2 class="newsletter-title">Subcribe to our Newsletter</h2>
-                <p class="newsletter-desc">Subscribe for Updates: Stay informed about the latest investor updates, financial results, and announcements by subscribing to our newsletter. </p>
-            </div>
+  const container = document.querySelector(".newsletter-section");
+  if (!container) {
+    console.warn(".newsletter-section bulunamadı.");
+    return;
+  }
 
-            <div class="newsletter-form-wrapper">
-                <form class="newsletter-form" onsubmit="event.preventDefault();">
-                    <input type="email" class="newsletter-input" placeholder="Enter your email">
-                    <button type="submit" class="newsletter-button">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    `;
-  document.body.appendChild(section);
+  container.innerHTML = `
+    <div class="newsletter-container">
+      <div class="newsletter-content">
+        <h2 class="newsletter-title">Subcribe to our Newsletter</h2>
+        <p class="newsletter-desc">
+          Subscribe for Updates: Stay informed about the latest investor updates,
+          financial results, and announcements by subscribing to our newsletter.
+        </p>
+      </div>
+
+      <div class="newsletter-form-wrapper">
+        <form class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Enter your email" required />
+          <button type="submit" class="newsletter-button">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  `;
+
+  // submit event'ini JS ile bağlamak daha sağlıklı
+  const form = container.querySelector(".newsletter-form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = container.querySelector(".newsletter-input").value.trim();
+    if (!email) return;
+
+    // burada istersen localStorage / API isteği vb. ekleyebilirsin
+    alert("Subscribed: " + email);
+    form.reset();
+  });
 };
-const createFaqSection = async (faqs) => {
-  const faqsSection = document.createElement("section");
-  faqsSection.classList.add("faq-section");
 
-  const headerDiv = document.createElement("div");
-  headerDiv.classList.add("faq-header");
-  headerDiv.innerHTML = `
+const createFaqSection = (faqs) => {
+  const faqsSection = document.querySelector(".faq-section");
+  if (!faqsSection || !faqs) return;
+
+  faqsSection.innerHTML = ""; // temizle
+
+  faqsSection.innerHTML += `
+    <div class="faq-header">
       <span class="faq-subtitle">FAQ</span>
       <h2 class="faq-title">Do you have any questions?</h2>
+    </div>
   `;
 
   const faqList = document.createElement("div");
   faqList.classList.add("faq-list");
-
-  if (!faqs) return;
 
   faqs.forEach((faq) => {
     const faqItem = document.createElement("div");
     faqItem.classList.add("faq-item");
 
     faqItem.innerHTML = `
-        <button class="faq-question">
-            <span class="faq-question-text">${faq.question}</span>
-            <span class="faq-icon">
-                <img src="/images/faq-section/arrow1.svg" alt="ikon">
-            </span>
-        </button>
-        <div class="faq-answer hidden">
-            <p>${faq.answer}</p>
-        </div>
+      <button class="faq-question">
+        <span class="faq-question-text">${faq.question}</span>
+        <span class="faq-icon">
+          <img src="/images/faq-section/arrow1.svg">
+        </span>
+      </button>
+      <div class="faq-answer hidden">
+        <p>${faq.answer}</p>
+      </div>
     `;
 
-    const questionBtn = faqItem.querySelector(".faq-question");
-    const answerDiv = faqItem.querySelector(".faq-answer");
+    const btn = faqItem.querySelector(".faq-question");
+    const answer = faqItem.querySelector(".faq-answer");
     const icon = faqItem.querySelector(".faq-icon");
 
-    questionBtn.addEventListener("click", () => {
-      answerDiv.classList.toggle("hidden");
-      answerDiv.classList.toggle("faq-answer-highlight");
+    btn.addEventListener("click", () => {
+      answer.classList.toggle("hidden");
       icon.classList.toggle("icon-rotated");
     });
 
     faqList.appendChild(faqItem);
   });
-  faqsSection.appendChild(headerDiv);
+
   faqsSection.appendChild(faqList);
-  document.body.appendChild(faqsSection);
 };
 
 const createContactSection = () => {
-  document.createElement("section");
-  const contactSection = document.createElement("section");
-  contactSection.innerHTML = `<div class="container">
-        <div class="contact-header">
-            <span class="sub-title">Contact Info</span>
-            <h2 class="main-title">We are always happy to assist you</h2>
+  const container = document.querySelector(".contact-section");
+  if (!container) {
+    console.warn(".contact-section bulunamadı.");
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="container">
+      <div class="contact-header">
+        <span class="sub-title">Contact Info</span>
+        <h2 class="main-title">We are always happy to assist you</h2>
+      </div>
+
+      <div class="contact-info-grid">
+        <div class="info-box">
+          <h3 class="info-label">Email Address</h3>
+          <div class="line"></div>
+          <a href="mailto:help@info.com" class="info-value">help@info.com</a>
+          <div class="info-hours">
+            <p>Assistance hours:</p>
+            <p>Monday - Friday 6 am to 8 pm EST</p>
+          </div>
         </div>
 
-        <div class="contact-info-grid">
-            
-            <div class="info-box">
-                <h3 class="info-label">Email Address</h3>
-                <div class="line"></div> <a href="mailto:help@info.com" class="info-value">help@info.com</a>
-                <div class="info-hours">
-                    <p>Assistance hours:</p>
-                    <p>Monday - Friday 6 am to 8 pm EST</p>
-                </div>
-            </div>
-
-            <div class="info-box">
-                <h3 class="info-label">Number</h3>
-                <div class="line"></div> <a href="tel:80899834256" class="info-value">(808) 998-34256</a>
-                <div class="info-hours">
-                    <p>Assistance hours:</p>
-                    <p>Monday - Friday 6 am to 8 pm EST</p>
-                </div>
-            </div>
-
+        <div class="info-box">
+          <h3 class="info-label">Number</h3>
+          <div class="line"></div>
+          <a href="tel:80899834256" class="info-value">(808) 998-34256</a>
+          <div class="info-hours">
+            <p>Assistance hours:</p>
+            <p>Monday - Friday 6 am to 8 pm EST</p>
+          </div>
         </div>
-    </div>`;
-  document.body.appendChild(contactSection);
+      </div>
+    </div>
+  `;
 };
+
 console.log("why-us:", document.querySelector(".why-us-section"));
 console.log("features-left:", document.querySelector(".features-content-left"));
 console.log("structure:", document.querySelector(".structure-content"));
