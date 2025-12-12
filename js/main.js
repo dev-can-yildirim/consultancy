@@ -16,15 +16,6 @@ import {
 } from "./render.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const path = window.location.pathname;
-  const isHome =
-    path.includes("/pages/homePage") || path === "/" || path === "/index.html";
-  const isLogin = path.includes("/login");
-  const isPricing = path.includes("/pricing");
-  const isSignup = path.includes("/signup");
-  const isBlog = path.includes("/blog");
-  const isServices = path.includes("/services");
-
   const faqs = await fetchData("faqs");
   const button = document.querySelector(".m-right button");
 
@@ -33,38 +24,41 @@ document.addEventListener("DOMContentLoaded", async () => {
       alert("Buton Tıklandı");
     });
   }
-
-  if (isHome) {
-    const features = await fetchData("feature-section");
-    const services = await fetchData("services-card");
+  if (
+    window.location.pathname.includes("index") ||
+    window.location.pathname === "/" ||
+    window.location.pathname === "/app-consultancy"
+  ) {
+    const data = await fetchData("feature-section");
+    const dataServices = await fetchData("services-card");
     createWhyUsSection();
-    createFeaturesSection(Array.isArray(features) ? features : []);
+    createFeaturesSection(data);
     createHamburgerButton();
-    createStructureCard(Array.isArray(services) ? services : []);
-    createFaqSection(Array.isArray(faqs) ? faqs : []);
+    createStructureCard(dataServices);
+    createFaqSection(faqs);
     createContactSection();
     createNewsletterSection();
-  } else if (isLogin) {
+  } else if (window.location.pathname.includes("login")) {
     createLoginSignUpForm("login");
-  } else if (isPricing) {
+  } else if (window.location.pathname.includes("pricing")) {
     createHamburgerButton();
     contactSectionLocalStorage();
     const pricing = await fetchData("pricing");
-    createPricingSection(Array.isArray(pricing) ? pricing : []);
+    createPricingSection(pricing);
     createNewsletterSection();
-    createFaqSection(Array.isArray(faqs) ? faqs : []);
+    createFaqSection(faqs);
     createContactSection();
-  } else if (isSignup) {
+  } else if (window.location.pathname.includes("signup")) {
     createLoginSignUpForm("signup");
-  } else if (isBlog) {
-    const posts = await fetchData("blog-posts");
-    const cards = await fetchData("blog-post-cards");
+  } else if (window.location.pathname.includes("blog")) {
+    const data = await fetchData("blog-posts");
+    const blogs = await fetchData("blog-post-cards");
     createHamburgerButton();
-    blogPagination(Array.isArray(posts) ? posts : []);
-    createBlogSection(Array.isArray(cards) ? cards : []);
+    blogPagination(data);
+    createBlogSection(blogs);
     createContactSection();
-  } else if (isServices) {
-    createFaqSection(Array.isArray(faqs) ? faqs : []);
+  } else if (window.location.pathname.includes("services")) {
+    createFaqSection(faqs);
     createHamburgerButton();
     contactSectionLocalStorage();
     createNewsletterSection();

@@ -3,13 +3,16 @@ import fetchData from "./fetch.js";
 const createWhyUsSection = () => {
   async function renderWhyUs() {
     try {
-      const whyUsSection = document.querySelector(".why-us-section");
-      if (!whyUsSection) return;
-
       const [content, stats] = await Promise.all([
         fetchData("why-us-textContent"),
         fetchData("why-us-stats"),
       ]);
+
+      const whyUsSection = document.querySelector(".why-us-section");
+      if (!whyUsSection) {
+        console.warn(".why-us-section bulunamadı. (HTML'de bu class yok)");
+        return;
+      }
 
       whyUsSection.innerHTML = `
         <div class="why-us-header">
@@ -42,11 +45,13 @@ const createWhyUsSection = () => {
 };
 
 const createFeaturesSection = (data) => {
-  if (!Array.isArray(data)) return;
   const featuresContentLeft = document.querySelector(".features-content-left");
-  if (!featuresContentLeft) return;
+  if (!featuresContentLeft) {
+    console.warn(".features-content-left bulunamadı.");
+    return;
+  }
 
-  featuresContentLeft.innerHTML = data
+  featuresContentLeft.innerHTML = (data || [])
     .map(
       (item) => `
         <div class="features-content-header">
@@ -54,7 +59,9 @@ const createFeaturesSection = (data) => {
             <img src="${item.imgUrl ?? ""}" alt="" />
           </div>
           <div class="features-content-content">
-            <h4 class="features-content-content-header">${item.header ?? ""}</h4>
+            <h4 class="features-content-content-header">${
+              item.header ?? ""
+            }</h4>
             <p class="features-content-paragraph">${item.paragraph ?? ""}</p>
           </div>
         </div>
@@ -64,11 +71,13 @@ const createFeaturesSection = (data) => {
 };
 
 const createStructureCard = (dataServices) => {
-  if (!Array.isArray(dataServices)) return;
   const structureSection = document.querySelector(".structure-content");
-  if (!structureSection) return;
+  if (!structureSection) {
+    console.warn(".structure-content bulunamadı.");
+    return;
+  }
 
-  structureSection.innerHTML = dataServices
+  structureSection.innerHTML = (dataServices || [])
     .map(
       (item) => `
         <div class="structure-card">
@@ -83,9 +92,7 @@ const createStructureCard = (dataServices) => {
 
 const createLoginSignUpForm = async (formType) => {
   const formContent = document.getElementById("formContent");
-  if (!formContent) return;
   const config = await fetchData(formType);
-  if (!config) return;
 
   const fieldsHTML = (config.fields || [])
     .map(
@@ -137,21 +144,40 @@ const createLoginSignUpForm = async (formType) => {
     const link = e.target.closest(".toggle-link");
     if (!link) return;
     e.preventDefault();
-    location.href = `/pages/${link.dataset.target}/index.html`;
+    location.href = `./../${link.dataset.target}/index.html`;
   });
 };
-
 const contactSectionLocalStorage = () => {
+  const form = document.getElementById("contact-form");
   const nameInput = document.getElementById("contact-input-name");
   const emailInput = document.getElementById("contact-input-email");
   const messageInput = document.getElementById("contact-message");
   const saveButton = document.getElementById("contact-button");
-  const form = document.getElementById("contact-form");
 
-  if (!nameInput || !emailInput || !messageInput || !saveButton) return;
+  if (!form || !nameInput || !emailInput || !messageInput || !saveButton) {
+    console.warn(
+      "Contact form elemanları bulunamadı (createContactSection çalışmış mı?)."
+    );
+    return;
+  }
 
-  const handleSave = (e) => {
-    if (e) e.preventDefault();
+  // Opsiyonel: önceki kaydı geri yükle
+  try {
+    const saved = localStorage.getItem("contactData");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      nameInput.value = parsed?.userName ?? "";
+      emailInput.value = parsed?.userEmail ?? "";
+      messageInput.value = parsed?.userMessage ?? "";
+    }
+  } catch (e) {
+    console.warn("contactData parse edilemedi:", e);
+  }
+
+  // Eski click yerine: submit ile tek doğru yerden yönet
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
     const formData = {
       userName: nameInput.value.trim(),
       userEmail: emailInput.value.trim(),
@@ -161,27 +187,18 @@ const contactSectionLocalStorage = () => {
     localStorage.setItem("contactData", JSON.stringify(formData));
     alert("Mesajınız yerel olarak kaydedildi!");
 
-    if (form) {
-      form.reset();
-    } else {
-      nameInput.value = "";
-      emailInput.value = "";
-      messageInput.value = "";
-    }
-  };
-
-  if (form) {
-    form.addEventListener("submit", handleSave);
-  } else {
-    saveButton.addEventListener("click", handleSave);
-  }
+    form.reset();
+  });
 };
 
 const createHamburgerButton = () => {
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
 
-  if (!hamburger || !navMenu) return;
+  if (!hamburger || !navMenu) {
+    console.warn("Hamburger veya nav-menu bulunamadı.");
+    return;
+  }
 
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("active");
@@ -189,11 +206,7 @@ const createHamburgerButton = () => {
 };
 
 const blogPagination = async (data) => {
-  if (!Array.isArray(data)) return;
   const blogList = document.querySelector(".blog-list");
-  const pagination = document.querySelector(".pagination");
-  if (!blogList || !pagination) return;
-
   const blogsPerPage = 6; // her sayfada 6 ürün olsun
   let currentPage = 1; // ilk sayfa
   const totalPage = Math.ceil(data.length / blogsPerPage); // toplam sayfa sayısını hesaplayıp kaç sayfa varsa o kadar sayfa butonu oluştur.
@@ -220,6 +233,8 @@ const blogPagination = async (data) => {
   };
 
   const updatePagination = () => {
+    const pagination = document.querySelector(".pagination");
+    // Mevcut sayfalama butonlarını temizle, tekrar eklenmesin
     pagination.innerHTML = "";
 
     const prevButton = document.createElement("button");
@@ -274,10 +289,9 @@ const blogPagination = async (data) => {
   showBlogs();
   updatePagination();
 };
-
 const createBlogSection = async (blogs) => {
   const container = document.querySelector(".blog-post-card");
-  if (!container || !Array.isArray(blogs)) return;
+  if (!container) return;
   container.innerHTML = blogs
     .map(
       (blog) => `
@@ -297,7 +311,6 @@ const createBlogSection = async (blogs) => {
 
 const createPricingSection = (data) => {
   const section = document.getElementById("pricing-section");
-  if (!section || !Array.isArray(data)) return;
 
   const cardsHTML = data
     .map((item) => {
@@ -324,13 +337,14 @@ const createPricingSection = (data) => {
 
   section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
 };
-
 const createNewsletterSection = () => {
-  const target =
-    document.querySelector(".newsletter-section") || document.createElement("section");
-  target.classList.add("newsletter-section");
+  const container = document.querySelector(".newsletter-section");
+  if (!container) {
+    console.warn(".newsletter-section bulunamadı.");
+    return;
+  }
 
-  target.innerHTML = `
+  container.innerHTML = `
     <div class="newsletter-container">
       <div class="newsletter-content">
         <h2 class="newsletter-title">Subcribe to our Newsletter</h2>
@@ -349,30 +363,24 @@ const createNewsletterSection = () => {
     </div>
   `;
 
-  const form = target.querySelector(".newsletter-form");
-  const input = target.querySelector(".newsletter-input");
-  if (form && input) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = input.value.trim();
-      if (!email) return;
-      alert("Subscribed: " + email);
-      form.reset();
-    });
-  }
+  // submit event'ini JS ile bağlamak daha sağlıklı
+  const form = container.querySelector(".newsletter-form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = container.querySelector(".newsletter-input").value.trim();
+    if (!email) return;
 
-  if (!target.isConnected) {
-    document.body.appendChild(target);
-  }
+    // burada istersen localStorage / API isteği vb. ekleyebilirsin
+    alert("Subscribed: " + email);
+    form.reset();
+  });
 };
 
 const createFaqSection = (faqs) => {
-  if (!faqs || !Array.isArray(faqs)) return;
-  const faqsSection =
-    document.querySelector(".faq-section") || document.createElement("section");
-  faqsSection.classList.add("faq-section");
+  const faqsSection = document.querySelector(".faq-section");
+  if (!faqsSection || !faqs) return;
 
-  faqsSection.innerHTML = "";
+  faqsSection.innerHTML = ""; // temizle
 
   faqsSection.innerHTML += `
     <div class="faq-header">
@@ -406,7 +414,6 @@ const createFaqSection = (faqs) => {
 
     btn.addEventListener("click", () => {
       answer.classList.toggle("hidden");
-      answer.classList.toggle("faq-answer-highlight");
       icon.classList.toggle("icon-rotated");
     });
 
@@ -414,20 +421,14 @@ const createFaqSection = (faqs) => {
   });
 
   faqsSection.appendChild(faqList);
-
-  if (!faqsSection.isConnected) {
-    document.body.appendChild(faqsSection);
-  }
 };
 
 const createContactSection = () => {
-  const container =
-    document.querySelector(".contact-section") || document.createElement("section");
-
-  // Sayfada zaten dolu bir contact-section varsa (ör. pricing sayfasındaki form), dokunma.
-  if (container.childElementCount > 0) return;
-
-  container.classList.add("contact-section");
+  const container = document.querySelector(".contact-section");
+  if (!container) {
+    console.warn(".contact-section bulunamadı.");
+    return;
+  }
 
   container.innerHTML = `
     <div class="container">
@@ -436,35 +437,81 @@ const createContactSection = () => {
         <h2 class="main-title">We are always happy to assist you</h2>
       </div>
 
-      <div class="contact-info-grid">
-        <div class="info-box">
-          <h3 class="info-label">Email Address</h3>
-          <div class="line"></div>
-          <a href="mailto:help@info.com" class="info-value">help@info.com</a>
-          <div class="info-hours">
-            <p>Assistance hours:</p>
-            <p>Monday - Friday 6 am to 8 pm EST</p>
+      <div class="contact-grid">
+        <!-- Sol: info -->
+        <div class="contact-info-grid">
+          <div class="info-box">
+            <h3 class="info-label">Email Address</h3>
+            <div class="line"></div>
+            <a href="mailto:help@info.com" class="info-value">help@info.com</a>
+            <div class="info-hours">
+              <p>Assistance hours:</p>
+              <p>Monday - Friday 6 am to 8 pm EST</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <h3 class="info-label">Number</h3>
+            <div class="line"></div>
+            <a href="tel:80899834256" class="info-value">(808) 998-34256</a>
+            <div class="info-hours">
+              <p>Assistance hours:</p>
+              <p>Monday - Friday 6 am to 8 pm EST</p>
+            </div>
           </div>
         </div>
 
-        <div class="info-box">
-          <h3 class="info-label">Number</h3>
-          <div class="line"></div>
-          <a href="tel:80899834256" class="info-value">(808) 998-34256</a>
-          <div class="info-hours">
-            <p>Assistance hours:</p>
-            <p>Monday - Friday 6 am to 8 pm EST</p>
+        <!-- Sağ: form -->
+        <form class="contact-form" id="contact-form">
+          <div class="contact-form-row">
+            <label class="contact-label">
+              Name
+              <input
+                type="text"
+                id="contact-input-name"
+                class="contact-input"
+                placeholder="Your name"
+                required
+              />
+            </label>
+
+            <label class="contact-label">
+              Email
+              <input
+                type="email"
+                id="contact-input-email"
+                class="contact-input"
+                placeholder="Your email"
+                required
+              />
+            </label>
           </div>
-        </div>
+
+          <label class="contact-label">
+            Message
+            <textarea
+              id="contact-message"
+              class="contact-textarea"
+              placeholder="Write your message..."
+              rows="6"
+              required
+            ></textarea>
+          </label>
+
+          <button type="submit" id="contact-button" class="contact-button">
+            Send Message
+          </button>
+        </form>
       </div>
     </div>
   `;
-
-  if (!container.isConnected) {
-    document.body.appendChild(container);
-  }
 };
 
+console.log("why-us:", document.querySelector(".why-us-section"));
+console.log("features-left:", document.querySelector(".features-content-left"));
+console.log("structure:", document.querySelector(".structure-content"));
+console.log("hamburger:", document.querySelector(".hamburger"));
+console.log("nav-menu:", document.querySelector(".nav-menu"));
 export {
   createWhyUsSection,
   createFeaturesSection,
