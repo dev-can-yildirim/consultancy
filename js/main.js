@@ -16,7 +16,6 @@ import {
 } from "./render.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // get-started adında ki buton tıklanınca alert
   const faqs = await fetchData("faqs");
   const button = document.querySelector(".m-right button");
 
@@ -36,24 +35,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     createFeaturesSection(data);
     createHamburgerButton();
     createStructureCard(dataServices);
-
     createFaqSection(faqs);
     createContactSection();
     createNewsletterSection();
   } else if (window.location.pathname.includes("login")) {
-    // login sayfasında render olacak kodlar buraya gelecek
     createLoginSignUpForm("login");
   } else if (window.location.pathname.includes("pricing")) {
     createHamburgerButton();
     contactSectionLocalStorage();
-    // pricing sayfasında render olacak kodlar buraya gelecek
     const pricing = await fetchData("pricing");
     createPricingSection(pricing);
     createNewsletterSection();
     createFaqSection(faqs);
     createContactSection();
   } else if (window.location.pathname.includes("signup")) {
-    // signUp sayfasında render olacak kodlar buraya gelecek
     createLoginSignUpForm("signup");
   } else if (window.location.pathname.includes("blog")) {
     const data = await fetchData("blog-posts");
@@ -62,10 +57,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     blogPagination(data);
     createBlogSection(blogs);
     createContactSection();
-    // blog sayfasında render olacak kodlar buraya gelecek
   } else if (window.location.pathname.includes("services")) {
     createFaqSection(faqs);
-    // services sayfasında render olacak kodlar buraya gelecek
     createHamburgerButton();
     contactSectionLocalStorage();
     createNewsletterSection();

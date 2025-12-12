@@ -9,67 +9,87 @@ const createWhyUsSection = () => {
       ]);
 
       const whyUsSection = document.querySelector(".why-us-section");
+      if (!whyUsSection) {
+        console.warn(".why-us-section bulunamadı. (HTML'de bu class yok)");
+        return;
+      }
+
       whyUsSection.innerHTML = `
         <div class="why-us-header">
-          <h4 class="why-us-top-header">${content.eyebrow}</h4>
-          <h2 class="why-us-bottom-header">${content.heading}</h2>
-          <p class="why-us-text">
-            ${content.description}
-          </p>
+          <h4 class="why-us-top-header">${content?.eyebrow ?? ""}</h4>
+          <h2 class="why-us-bottom-header">${content?.heading ?? ""}</h2>
+          <p class="why-us-text">${content?.description ?? ""}</p>
         </div>
         <div class="why-us-content"></div>
       `;
 
-      const whyUsStats = document.querySelector(".why-us-content");
+      const whyUsStats = whyUsSection.querySelector(".why-us-content");
+      if (!whyUsStats) return;
 
-      whyUsStats.innerHTML = stats
-        .map((item) => {
-          return `
-      <div class="stat-item">
-        <span class="stat-value">${item.value}</span>
-        <p class="stat-text">${item.text}</p>
-      </div>
-    `;
-        })
+      whyUsStats.innerHTML = (stats || [])
+        .map(
+          (item) => `
+            <div class="stat-item">
+              <span class="stat-value">${item.value ?? ""}</span>
+              <p class="stat-text">${item.text ?? ""}</p>
+            </div>
+          `
+        )
         .join("");
     } catch (err) {
-      console.error("JSON verisi yüklenemedi:", err);
+      console.error("WhyUs JSON verisi yüklenemedi:", err);
     }
   }
 
   renderWhyUs();
 };
-const createFeaturesSection = async (data) => {
-  const featuresContentLeft = document.querySelector(".features-content-left");
-  featuresContentLeft.innerHTML = data
-    .map((item) => {
-      return `
-         <div class="features-content-header">
-              <div class="features-content-image"><img src="${item.imgUrl}" alt="" /></div>
-              <div class="features-content-content">
-                <h4 class="features-content-content-header">${item.header}</h4>
-                <p class="features-content-paragraph">${item.paragraph}</p>
-              </div>
-         </div>
-        `;
-    })
-    .join("");
-};
-const createStructureCard = async (dataServices) => {
-  const structureSection = document.querySelector(".structure-content");
 
-  structureSection.innerHTML = dataServices
-    .map((item) => {
-      return `    
-            <div class="structure-card">
-              <img src="${item.image}" alt="">
-              <h2>${item.title}</h2>
-              <p>${item.text}</p>
-            </div>
-    `;
-    })
+const createFeaturesSection = (data) => {
+  const featuresContentLeft = document.querySelector(".features-content-left");
+  if (!featuresContentLeft) {
+    console.warn(".features-content-left bulunamadı.");
+    return;
+  }
+
+  featuresContentLeft.innerHTML = (data || [])
+    .map(
+      (item) => `
+        <div class="features-content-header">
+          <div class="features-content-image">
+            <img src="${item.imgUrl ?? ""}" alt="" />
+          </div>
+          <div class="features-content-content">
+            <h4 class="features-content-content-header">${
+              item.header ?? ""
+            }</h4>
+            <p class="features-content-paragraph">${item.paragraph ?? ""}</p>
+          </div>
+        </div>
+      `
+    )
     .join("");
 };
+
+const createStructureCard = (dataServices) => {
+  const structureSection = document.querySelector(".structure-content");
+  if (!structureSection) {
+    console.warn(".structure-content bulunamadı.");
+    return;
+  }
+
+  structureSection.innerHTML = (dataServices || [])
+    .map(
+      (item) => `
+        <div class="structure-card">
+          <img src="${item.image ?? ""}" alt="">
+          <h2>${item.title ?? ""}</h2>
+          <p>${item.text ?? ""}</p>
+        </div>
+      `
+    )
+    .join("");
+};
+
 const createLoginSignUpForm = async (formType) => {
   const formContent = document.getElementById("formContent");
   const config = await fetchData(formType);
@@ -133,21 +153,19 @@ const contactSectionLocalStorage = () => {
   const messageInput = document.getElementById("contact-message");
   const saveButton = document.getElementById("contact-button");
 
-  saveButton.addEventListener("click", function () {
-    const name = nameInput.value;
-    const email = emailInput.value;
-    const message = messageInput.value;
+  if (!nameInput || !emailInput || !messageInput || !saveButton) {
+    console.warn("Contact form elemanları bulunamadı (id'leri kontrol et).");
+    return;
+  }
 
+  saveButton.addEventListener("click", function () {
     const formData = {
-      userName: name,
-      userEmail: email,
-      userMessage: message,
+      userName: nameInput.value,
+      userEmail: emailInput.value,
+      userMessage: messageInput.value,
     };
 
-    const formDataString = JSON.stringify(formData);
-
-    localStorage.setItem("contactData", formDataString);
-
+    localStorage.setItem("contactData", JSON.stringify(formData));
     alert("Mesajınız yerel olarak kaydedildi!");
 
     nameInput.value = "";
@@ -155,13 +173,21 @@ const contactSectionLocalStorage = () => {
     messageInput.value = "";
   });
 };
+
 const createHamburgerButton = () => {
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
+
+  if (!hamburger || !navMenu) {
+    console.warn("Hamburger veya nav-menu bulunamadı.");
+    return;
+  }
+
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("active");
   });
 };
+
 const blogPagination = async (data) => {
   const blogList = document.querySelector(".blog-list");
   const blogsPerPage = 6; // her sayfada 6 ürün olsun
@@ -265,22 +291,17 @@ const createBlogSection = async (blogs) => {
     )
     .join("");
 };
- 
 
+const createPricingSection = (data) => {
+  const section = document.getElementById("pricing-section");
 
+  const cardsHTML = data
+    .map((item) => {
+      const featuresHTML = item.features
+        .map((feature) => `<p>${feature}</p>`)
+        .join("");
 
-
- const createPricingSection = (data) => {
-    const section = document.getElementById('pricing-section');
-
-    const cardsHTML = data.map(item => {
-        
-        const featuresHTML = item.features.map(feature => 
-            `<p>${feature}</p>`
-        ).join('');
-
-      
-        return `
+      return `
             <div class="pricing-card">
                 <h3 class="card-title">${item.title}</h3>
                 <div class="price-wrapper">
@@ -294,14 +315,14 @@ const createBlogSection = async (blogs) => {
                 <button class="card-btn">${item.buttonText}</button>
             </div>
         `;
-    }).join(''); 
+    })
+    .join("");
 
-    section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
+  section.innerHTML = `<div class="pricing-container">${cardsHTML}</div>`;
 };
 const createNewsletterSection = () => {
   const section = document.createElement("div");
-  section.innerHTML = 
-  `
+  section.innerHTML = `
         <div class="newsletter-container">
             <div class="newsletter-content">
                 <h2 class="newsletter-title">Subcribe to our Newsletter</h2>
@@ -316,7 +337,7 @@ const createNewsletterSection = () => {
             </div>
         </div>
     `;
-    document.body.appendChild(section);
+  document.body.appendChild(section);
 };
 const createFaqSection = async (faqs) => {
   const faqsSection = document.createElement("section");
@@ -355,23 +376,22 @@ const createFaqSection = async (faqs) => {
     const icon = faqItem.querySelector(".faq-icon");
 
     questionBtn.addEventListener("click", () => {
-        answerDiv.classList.toggle("hidden");
-        answerDiv.classList.toggle("faq-answer-highlight");
-        icon.classList.toggle("icon-rotated");
+      answerDiv.classList.toggle("hidden");
+      answerDiv.classList.toggle("faq-answer-highlight");
+      icon.classList.toggle("icon-rotated");
     });
 
     faqList.appendChild(faqItem);
-
   });
   faqsSection.appendChild(headerDiv);
   faqsSection.appendChild(faqList);
   document.body.appendChild(faqsSection);
-}
+};
 
 const createContactSection = () => {
-document.createElement("section");
-const contactSection = document.createElement("section");
-contactSection.innerHTML = `<div class="container">
+  document.createElement("section");
+  const contactSection = document.createElement("section");
+  contactSection.innerHTML = `<div class="container">
         <div class="contact-header">
             <span class="sub-title">Contact Info</span>
             <h2 class="main-title">We are always happy to assist you</h2>
@@ -398,10 +418,14 @@ contactSection.innerHTML = `<div class="container">
             </div>
 
         </div>
-    </div>`
-document.body.appendChild(contactSection);
-} 
-
+    </div>`;
+  document.body.appendChild(contactSection);
+};
+console.log("why-us:", document.querySelector(".why-us-section"));
+console.log("features-left:", document.querySelector(".features-content-left"));
+console.log("structure:", document.querySelector(".structure-content"));
+console.log("hamburger:", document.querySelector(".hamburger"));
+console.log("nav-menu:", document.querySelector(".nav-menu"));
 export {
   createWhyUsSection,
   createFeaturesSection,

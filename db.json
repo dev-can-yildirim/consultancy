@@ -324,13 +324,8 @@
       "content": "Clear and effective team communication is the backbone of any successful project. We explore actionable strategies to improve internal dialogue, reduce bottlenecks, and foster a collaborative environment.",
       "image": "/images/blog-post-cards-images/blog-post-4.jpg"
     }
-  ]
-  ,
-
-
-
-  
-   "pricing": [
+  ],
+  "pricing": [
     {
       "id": 1,
       "title": "Team",
@@ -385,9 +380,4 @@
       "answer": "Subscription management involves handling the entire customer lifecycle, from initial sign-up and recurring billing to managing upgrades, downgrades, pauses, and cancellations. It often requires specialized software to automate these processes."
     }
   ]
-  
-  
 }
-
-
- 
